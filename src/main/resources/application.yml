@@ -1,0 +1,20 @@
+server:
+  port : ${SERVER_PORT:8081}
+spring:
+  application:
+    name: support-hacom-message-v1.0
+mongodb:
+  mongodbUri: "mongodb+srv://%s:%s@appName.qfrd4.mongodb.net/?retryWrites=true&w=majority&appName=appName"
+  mongodbDatabase: "message"
+  username: "${MONGO_USERNAME:changeIt}"
+  password: "${MONGO_PASSWORD:changeIt}"
+
+#Actuator Prometheus
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  metrics:
+    tags:
+      application: hacom-app
