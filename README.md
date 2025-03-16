@@ -29,19 +29,25 @@ Aplicación Java Spring Boot que permite insertar y consultar mensajes en MongoD
 ## ⚙️ Configuración en `application.yml`
 ```yaml
 server:
-  port: ${apiPort:9898}
-
+  port : ${SERVER_PORT:8081}
 spring:
-  data:
-    mongodb:
-      uri: "mongodb://127.0.0.1:27017"
-      database: exampleDb
+  application:
+    name: support-hacom-message-v1.0
+mongodb:
+  mongodbUri: "mongodb+srv://%s:%s@appName.qfrd4.mongodb.net/?retryWrites=true&w=majority&appName=appName"
+  mongodbDatabase: "message"
+  username: "${MONGO_USERNAME:changeIt}"
+  password: "${MONGO_PASSWORD:changeIt}"
 
+#Actuator Prometheus
 management:
   endpoints:
     web:
       exposure:
-        include: metrics, prometheus
+        include: health, prometheus
+  metrics:
+    tags:
+      application: hacom-app
 
 ```
 ✅ Ejemplo de JSON para Insertar un Mensaje
